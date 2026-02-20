@@ -16,7 +16,9 @@ class UserSeeder extends Seeder
             'role' => 'Super Admin',
             'slug' => 'super-admin',
             'parent_id' => null,
-        ], [
+        ]);
+
+        Roles::create([
             'role' => 'Admin',
             'slug' => 'admin',
             'parent_id' => null,

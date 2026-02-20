@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Roles;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -25,7 +26,7 @@ class UserFactory extends Factory
     {
         return [
             'slug' => fake()->uuid(),
-            'role_id' => 1,
+            'role_id' => Roles::firstOrCreate(['slug' => 'super-admin'], ['role' => 'Super Admin'])->id,
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
