@@ -19,14 +19,14 @@ return new class extends Migration
         Schema::enableForeignKeyConstraints();
 
         Schema::create('roles', function (Blueprint $table) {
-            $table->id()->primary()->autoIncrement();
+            $table->id();
             $table->string('role'); // "Super Admin"
             $table->string('slug')->unique(); // "super-admin"
             $table->foreignId('parent_id')->nullable()->constrained('roles');
             $table->timestamps();
         });
         Schema::create('users', function (Blueprint $table) {
-            $table->id()->primary()->autoIncrement();
+            $table->id();
             $table->uuid('slug')->unique();
             $table->string('name');
             $table->string('email')->unique();

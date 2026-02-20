@@ -20,7 +20,7 @@ return new class extends Migration
         Schema::enableForeignKeyConstraints();
         // 1. MODULES (Untuk Grouping Menu - Req #3)
         Schema::create('modules', function (Blueprint $table) {
-            $table->id()->primary()->autoIncrement();
+            $table->id();
             $table->string('name');         // Contoh: "Master Data", "Settings"
             $table->string('label');        // Nama tampilan (bisa translate)
             $table->string('icon')->nullable(); // Icon untuk header grup (jika perlu)
@@ -31,7 +31,7 @@ return new class extends Migration
 
         // 2. PERMISSIONS (Satuan terkecil akses - Req #1)
         Schema::create('permissions', function (Blueprint $table) {
-            $table->id()->primary()->autoIncrement();
+            $table->id();
             $table->foreignId('module_id')->constrained('modules')->cascadeOnDelete(); // Grouping permission per modul
             $table->string('name'); // Human readable: "Create Product"
             $table->string('slug')->unique(); // System readable: "product.create"
@@ -41,7 +41,7 @@ return new class extends Migration
 
         // 4. MENUS (Struktur Sidebar Dinamis - Req #1, #4)
         Schema::create('menus', function (Blueprint $table) {
-            $table->id()->primary()->autoIncrement();
+            $table->id();
             $table->foreignId('module_id')->constrained('modules')->cascadeOnDelete();
             $table->foreignId('parent_id')->nullable()->constrained('menus')->cascadeOnDelete(); // Untuk Sub-menu
             $table->foreignId('permission_id')->nullable()->constrained('permissions')->cascadeOnDelete(); // KUNCI: Menu ini tampil kalau user punya permission ini

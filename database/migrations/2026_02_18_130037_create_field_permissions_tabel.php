@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::dropIfExists('field_permissions');
         Schema::enableForeignKeyConstraints();
         Schema::create('field_permissions', function (Blueprint $table) {
-            $table->id()->primary()->autoIncrement();
+            $table->id();
             $table->foreignId('role_id')->constrained('roles')->cascadeOnDelete();
             $table->string('model'); // Misal: 'App\Models\Employee'
             $table->string('field'); // Misal: 'salary'

@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::dropIfExists('rbac_logs');
         Schema::enableForeignKeyConstraints();
         Schema::create('rbac_logs', function (Blueprint $table) {
-            $table->id()->primary()->autoIncrement();
+            $table->id();
             $table->foreignId('actor_id')->constrained('users')->cascadeOnDelete(); // Siapa yang mengubah (Admin)
             $table->foreignId('target_user_id')->nullable(); // Siapa yang diubah
             $table->string('event'); // 'assigned_role', 'revoked_permission'
